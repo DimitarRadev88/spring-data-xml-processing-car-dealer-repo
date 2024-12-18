@@ -1,6 +1,5 @@
 package bg.softuni.springDataXmlProcessingPartTwo.core;
 
-import bg.softuni.springDataXmlProcessingPartTwo.models.Customer;
 import bg.softuni.springDataXmlProcessingPartTwo.services.interfaces.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -27,7 +26,11 @@ public class ConsoleRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        importData();
+//        importData();
+        customerService.exportOrderedCustomers();
+        carService.exportCarsFromMakeToyota();
+        supplierService.exportAllLocalSuppliers();
+        carService.exportCarsWithPartsList();
     }
 
     private void importData() throws JAXBException, FileNotFoundException {

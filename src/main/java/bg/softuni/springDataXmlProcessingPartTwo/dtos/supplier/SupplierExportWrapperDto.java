@@ -1,4 +1,4 @@
-package bg.softuni.springDataXmlProcessingPartTwo.dtos;
+package bg.softuni.springDataXmlProcessingPartTwo.dtos.supplier;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -8,16 +8,16 @@ import java.util.List;
 
 @XmlRootElement(name = "suppliers")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class SupplierWrapperDto {
+public class SupplierExportWrapperDto {
 
     @XmlElement(name = "supplier")
-    private List<SupplierImportDto> suppliers;
+    private List<SupplierExportDto> suppliers;
 
-    public List<SupplierImportDto> getSuppliers() {
+    public List<SupplierExportDto> getSuppliers() {
         return suppliers;
     }
 
-    public void setSuppliers(List<SupplierImportDto> suppliers) {
+    public void setSuppliers(List<SupplierExportDto> suppliers) {
         this.suppliers = suppliers;
     }
 }

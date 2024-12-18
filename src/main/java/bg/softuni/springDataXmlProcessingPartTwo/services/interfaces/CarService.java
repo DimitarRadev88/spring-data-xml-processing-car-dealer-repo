@@ -7,4 +7,7 @@ import java.io.FileNotFoundException;
 public interface CarService {
     void importData() throws JAXBException, FileNotFoundException;
 
+    void exportCarsFromMakeToyota() throws JAXBException;
+
+    void exportCarsWithPartsList();
 }

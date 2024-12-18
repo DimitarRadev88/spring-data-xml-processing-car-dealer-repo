@@ -1,4 +1,4 @@
-package bg.softuni.springDataXmlProcessingPartTwo.dtos;
+package bg.softuni.springDataXmlProcessingPartTwo.dtos.car;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -8,16 +8,17 @@ import java.util.List;
 
 @XmlRootElement(name = "cars")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CarImportWrapper {
+public class CarExportWrapperDto {
 
     @XmlElement(name = "car")
-    private List<CarImportDto> cars;
+    private List<CarExportDto> cars;
 
-    public List<CarImportDto> getCars() {
+    public List<CarExportDto> getCars() {
         return cars;
     }
 
-    public void setCars(List<CarImportDto> cars) {
+    public void setCars(List<CarExportDto> cars) {
         this.cars = cars;
     }
+
 }

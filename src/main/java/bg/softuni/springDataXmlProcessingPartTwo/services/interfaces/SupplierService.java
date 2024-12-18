@@ -7,4 +7,6 @@ public interface SupplierService {
 
     void importData() throws JAXBException, FileNotFoundException;
 
+    void exportAllLocalSuppliers() throws JAXBException;
+
 }

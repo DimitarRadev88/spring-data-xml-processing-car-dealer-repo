@@ -1,4 +1,4 @@
-package bg.softuni.springDataXmlProcessingPartTwo.dtos;
+package bg.softuni.springDataXmlProcessingPartTwo.dtos.part;
 
 import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;

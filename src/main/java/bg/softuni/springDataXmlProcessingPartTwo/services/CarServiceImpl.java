@@ -1,6 +1,8 @@
 package bg.softuni.springDataXmlProcessingPartTwo.services;
 
-import bg.softuni.springDataXmlProcessingPartTwo.dtos.CarImportWrapper;
+import bg.softuni.springDataXmlProcessingPartTwo.dtos.car.CarExportDto;
+import bg.softuni.springDataXmlProcessingPartTwo.dtos.car.CarExportWrapperDto;
+import bg.softuni.springDataXmlProcessingPartTwo.dtos.car.CarImportWrapper;
 import bg.softuni.springDataXmlProcessingPartTwo.models.Car;
 import bg.softuni.springDataXmlProcessingPartTwo.models.Part;
 import bg.softuni.springDataXmlProcessingPartTwo.repositories.CarRepository;
@@ -13,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -60,6 +61,24 @@ public class CarServiceImpl implements CarService {
         }).toList();
 
         carRepository.saveAll(list);
+    }
+
+    @Override
+    public void exportCarsFromMakeToyota() throws JAXBException {
+        List<Car> cars = carRepository.findAllByMakeOrderByModelAscTravelledDistanceDesc("Toyota");
+
+        List<CarExportDto> list = cars.stream().map(c -> modelMapper.map(c, CarExportDto.class)).toList();
+
+        CarExportWrapperDto wrapperDto = new CarExportWrapperDto();
+
+        wrapperDto.setCars(list);
+
+        parser.toFile("src/main/resources/files/output/xml/toyota-cars.xml", wrapperDto);
+    }
+
+    @Override
+    public void exportCarsWithPartsList() {
+
     }
 
 }

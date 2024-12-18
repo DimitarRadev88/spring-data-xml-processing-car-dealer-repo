@@ -1,6 +1,6 @@
 package bg.softuni.springDataXmlProcessingPartTwo.services;
 
-import bg.softuni.springDataXmlProcessingPartTwo.dtos.PartWrapperDto;
+import bg.softuni.springDataXmlProcessingPartTwo.dtos.part.PartWrapperDto;
 import bg.softuni.springDataXmlProcessingPartTwo.models.Part;
 import bg.softuni.springDataXmlProcessingPartTwo.models.Supplier;
 import bg.softuni.springDataXmlProcessingPartTwo.repositories.PartRepository;

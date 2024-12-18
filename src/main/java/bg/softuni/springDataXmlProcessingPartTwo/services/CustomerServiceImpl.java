@@ -1,6 +1,8 @@
 package bg.softuni.springDataXmlProcessingPartTwo.services;
 
-import bg.softuni.springDataXmlProcessingPartTwo.dtos.CustomerWrapperDto;
+import bg.softuni.springDataXmlProcessingPartTwo.dtos.customer.CustomerExportDto;
+import bg.softuni.springDataXmlProcessingPartTwo.dtos.customer.CustomerExportWrapperDto;
+import bg.softuni.springDataXmlProcessingPartTwo.dtos.customer.CustomerWrapperDto;
 import bg.softuni.springDataXmlProcessingPartTwo.models.Customer;
 import bg.softuni.springDataXmlProcessingPartTwo.repositories.CustomerRepository;
 import bg.softuni.springDataXmlProcessingPartTwo.repositories.SaleRepository;
@@ -39,6 +41,20 @@ public class CustomerServiceImpl implements CustomerService {
         List<Customer> list = wrapperDto.getCustomers().stream().map(dto -> modelMapper.map(dto, Customer.class)).toList();
 
         customerRepository.saveAll(list);
+    }
+
+    @Override
+    public void exportOrderedCustomers() throws JAXBException {
+        List<Customer> customers = customerRepository.findAllByOrderByBirthDateAscYoungDriverAsc();
+
+        List<CustomerExportDto> list = customers.stream().map(c -> modelMapper.map(c, CustomerExportDto.class)).toList();
+
+        CustomerExportWrapperDto wrapper = new CustomerExportWrapperDto();
+
+        wrapper.setCustomers(list);
+
+        parser.toFile("src/main/resources/files/output/xml/ordered-customers.xml", wrapper);
+
     }
 
 }

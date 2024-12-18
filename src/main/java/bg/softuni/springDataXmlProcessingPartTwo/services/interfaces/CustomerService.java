@@ -7,4 +7,5 @@ public interface CustomerService {
 
     void importData() throws JAXBException, FileNotFoundException;
 
+    void exportOrderedCustomers() throws JAXBException;
 }

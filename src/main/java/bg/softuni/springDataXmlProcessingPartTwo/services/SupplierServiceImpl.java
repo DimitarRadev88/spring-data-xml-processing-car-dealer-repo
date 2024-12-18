@@ -1,8 +1,9 @@
 package bg.softuni.springDataXmlProcessingPartTwo.services;
 
 
-import bg.softuni.springDataXmlProcessingPartTwo.dtos.SupplierImportDto;
-import bg.softuni.springDataXmlProcessingPartTwo.dtos.SupplierWrapperDto;
+import bg.softuni.springDataXmlProcessingPartTwo.dtos.supplier.SupplierExportDto;
+import bg.softuni.springDataXmlProcessingPartTwo.dtos.supplier.SupplierExportWrapperDto;
+import bg.softuni.springDataXmlProcessingPartTwo.dtos.supplier.SupplierWrapperDto;
 import bg.softuni.springDataXmlProcessingPartTwo.models.Supplier;
 import bg.softuni.springDataXmlProcessingPartTwo.repositories.SupplierRepository;
 import bg.softuni.springDataXmlProcessingPartTwo.services.interfaces.SupplierService;
@@ -40,6 +41,21 @@ public class SupplierServiceImpl implements SupplierService {
                 .toList();
 
         supplierRepository.saveAll(list);
+    }
+
+    @Override
+    public void exportAllLocalSuppliers() throws JAXBException {
+        List<Supplier> suppliers = supplierRepository.findAllWithPartsByImporterFalse();
+
+        List<SupplierExportDto> list = suppliers
+                .stream()
+                .map(s -> modelMapper.map(s, SupplierExportDto.class))
+                .toList();
+
+        SupplierExportWrapperDto wrapper = new SupplierExportWrapperDto();
+        wrapper.setSuppliers(list);
+
+        parser.toFile("src/main/resources/files/output/xml/local-suppliers.xml", wrapper);
     }
 
 }

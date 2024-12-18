@@ -1,6 +1,4 @@
-package bg.softuni.springDataXmlProcessingPartTwo.dtos;
-
-import bg.softuni.springDataXmlProcessingPartTwo.models.Customer;
+package bg.softuni.springDataXmlProcessingPartTwo.dtos.customer;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
