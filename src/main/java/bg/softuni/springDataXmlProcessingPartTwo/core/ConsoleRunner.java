@@ -31,6 +31,8 @@ public class ConsoleRunner implements CommandLineRunner {
         carService.exportCarsFromMakeToyota();
         supplierService.exportAllLocalSuppliers();
         carService.exportCarsWithPartsList();
+        customerService.exportSalesByCustomer();
+        saleService.exportSalesWithDiscountInfo();
     }
 
     private void importData() throws JAXBException, FileNotFoundException {

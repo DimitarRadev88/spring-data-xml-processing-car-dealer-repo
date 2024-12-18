@@ -1,8 +1,6 @@
 package bg.softuni.springDataXmlProcessingPartTwo.services;
 
-import bg.softuni.springDataXmlProcessingPartTwo.dtos.car.CarExportDto;
-import bg.softuni.springDataXmlProcessingPartTwo.dtos.car.CarExportWrapperDto;
-import bg.softuni.springDataXmlProcessingPartTwo.dtos.car.CarImportWrapper;
+import bg.softuni.springDataXmlProcessingPartTwo.dtos.car.*;
 import bg.softuni.springDataXmlProcessingPartTwo.models.Car;
 import bg.softuni.springDataXmlProcessingPartTwo.models.Part;
 import bg.softuni.springDataXmlProcessingPartTwo.repositories.CarRepository;
@@ -67,7 +65,10 @@ public class CarServiceImpl implements CarService {
     public void exportCarsFromMakeToyota() throws JAXBException {
         List<Car> cars = carRepository.findAllByMakeOrderByModelAscTravelledDistanceDesc("Toyota");
 
-        List<CarExportDto> list = cars.stream().map(c -> modelMapper.map(c, CarExportDto.class)).toList();
+        List<CarExportDto> list = cars
+                .stream()
+                .map(c -> modelMapper.map(c, CarExportDto.class))
+                .toList();
 
         CarExportWrapperDto wrapperDto = new CarExportWrapperDto();
 
@@ -77,8 +78,18 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void exportCarsWithPartsList() {
+    public void exportCarsWithPartsList() throws JAXBException {
+        List<Car> cars = carRepository.findAllWithParts();
 
+        List<CarWithPartsExportDto> list = cars
+                .stream()
+                .map(c -> modelMapper.map(c, CarWithPartsExportDto.class))
+                .toList();
+
+        CarWithPartsExportWrapperDto wrapperDto = new CarWithPartsExportWrapperDto();
+        wrapperDto.setCars(list);
+
+        parser.toFile("src/main/resources/files/output/xml/cars-and-parts.xml", wrapperDto);
     }
 
 }

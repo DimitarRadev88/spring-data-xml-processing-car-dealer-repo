@@ -8,4 +8,7 @@ public interface CustomerService {
     void importData() throws JAXBException, FileNotFoundException;
 
     void exportOrderedCustomers() throws JAXBException;
+
+    void exportSalesByCustomer() throws JAXBException;
+
 }

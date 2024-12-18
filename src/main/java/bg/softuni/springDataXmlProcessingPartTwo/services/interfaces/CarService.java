@@ -9,5 +9,5 @@ public interface CarService {
 
     void exportCarsFromMakeToyota() throws JAXBException;
 
-    void exportCarsWithPartsList();
+    void exportCarsWithPartsList() throws JAXBException;
 }

@@ -42,11 +42,15 @@ public class PartServiceImpl implements PartService {
     public void importData() throws JAXBException, FileNotFoundException {
         PartWrapperDto wrapperDto = parser.fromFile("src/main/resources/files/input/xml/parts.xml", PartWrapperDto.class);
 
-        List<Part> list = wrapperDto.getParts().stream().map(dto -> {
-            Part part = modelMapper.map(dto, Part.class);
-            part.setSupplier(getRandomSupplier());
-            return part;
-        }).toList();
+        List<Part> list = wrapperDto
+                .getParts()
+                .stream()
+                .map(dto -> {
+                    Part part = modelMapper.map(dto, Part.class);
+                    part.setSupplier(getRandomSupplier());
+                    return part;
+                })
+                .toList();
 
         partRepository.saveAll(list);
     }
