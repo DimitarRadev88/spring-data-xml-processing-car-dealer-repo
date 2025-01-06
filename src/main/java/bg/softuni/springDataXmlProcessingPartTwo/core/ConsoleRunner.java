@@ -26,7 +26,7 @@ public class ConsoleRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        importData();
+        importData();
         customerService.exportOrderedCustomers();
         carService.exportCarsFromMakeToyota();
         supplierService.exportAllLocalSuppliers();
